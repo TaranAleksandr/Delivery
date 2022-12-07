@@ -1,7 +1,9 @@
 const cardsRestaurants = document.querySelector('.cards-restaurants')
 
+
 const renderItem = (data) => {
   data.forEach((item) => {
+
     const a = document.createElement('a')
     const { image, kitchen, name, price, products, stars, time_of_delivery } = item
 
@@ -32,9 +34,16 @@ const renderItem = (data) => {
 `
     a.addEventListener('click', (e) => {
       e.preventDefault()
+      const btnOut = document.querySelector('.button-out')
+      const modalAuth = document.querySelector('.modal-auth')
 
-      localStorage.setItem('restaurant', JSON.stringify(item))
-      window.location.href = '/restaurant.html'
+      if (btnOut.style.display === 'block') {
+
+        localStorage.setItem('restaurant', JSON.stringify(item))
+        window.location.href = '/restaurant.html'
+      } else {
+        modalAuth.style.display = 'flex'
+      }
     })
     cardsRestaurants.append(a)
   })
